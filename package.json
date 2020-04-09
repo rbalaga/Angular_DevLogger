@@ -1,7 +1,6 @@
 {
   "name": "devlogger",
   "version": "0.0.0",
-  "main": "dist/devlogger",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
