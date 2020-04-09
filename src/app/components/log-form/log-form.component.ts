@@ -26,21 +26,23 @@ export class LogFormComponent implements OnInit {
 
   onLogSelectTrigger = () => {};
 
-  formSubmit = () => {
+  formSubmit = (e) => {
     if (this.log.id === null) {
       this.logService.addLog(this.log);
     } else {
       this.logService.updateLog(this.log);
     }
-    this.resetForm();
+    this.resetForm(e);
   };
 
-  resetForm = () => {
+  resetForm = (e) => {
     this.isNew = true;
     this.log = {
       id: null,
       title: null,
       date: null,
     };
+    this.logService.setSelectedLogId(null);
+    e.preventDefault();
   };
 }

@@ -9,12 +9,16 @@ import { LogsService } from 'src/app/services/logs.service';
 })
 export class LogsComponent implements OnInit {
   logs: Log[];
+  selectedLogId: string = '';
 
   constructor(private logsService: LogsService) {}
 
   ngOnInit(): void {
     this.logsService.getLogs().subscribe((logs) => {
       this.logs = logs;
+    });
+    this.logsService.selectedLogId.subscribe((logId) => {
+      this.selectedLogId = logId;
     });
   }
 
@@ -23,8 +27,6 @@ export class LogsComponent implements OnInit {
   };
 
   removeLog = (log: Log) => {
-    this.logs.forEach((lookupLog, index) => {
-      if (lookupLog.id === log.id) this.logs.splice(index, 1);
-    });
+    this.logsService.removeLog(log);
   };
 }
